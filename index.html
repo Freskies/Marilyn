@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		img {
+			width: 150px;
+			height: 150px;
+		}
+	</style>
+	<script>
+		// generate a random color
+		function getRandomColor() {
+			return '#' + Math.floor(Math.random() * 16777215).toString(16);
+		}
+
+		function changeColor() {
+			console.log("changeColor");
+			const cell = document.querySelectorAll(".cell");
+			cell.forEach(e => {
+				e.style.backgroundColor = getRandomColor();
+			});
+		}
+	</script>
+</head>
+<body>
+<script>
+	const img = new Image();
+	img.src = "mar.png";
+
+	const table = document.createElement("table");
+
+	for (let i = 0; i < 4; i++) {
+		let row = document.createElement("tr");
+
+		for (let i = 0; i < 8; i++) {
+			let col = document.createElement("td");
+			col.appendChild(img.cloneNode());
+			col.style.backgroundColor = getRandomColor();
+			col.classList.add("cell");
+			row.appendChild(col);
+		}
+
+		table.appendChild(row);
+	}
+
+	document.body.appendChild(table);
+	setInterval(changeColor, 1000);
+</script>
+</body>
+</html>
